@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+xmlns:context="http://www.springframework.org/schema/context">
+	<context:annotation-config/>
+	<context:property-placeholder location="classpath:musicPlayer.properties" /> 
+
+	<bean id="ClassicalMusicBean" 
+		class="smv.example.ClassicalMusic">
+	</bean>
+	
+	<bean id="RockMusicBean" 
+		class="smv.example.RockMusic">
+	</bean>
+	
+	<bean id="JazzMusicBean" 
+		class="smv.example.JazzMusic">
+	</bean>
+	
+	<bean id="musicPlayer" class="smv.example.MusicPlayer">
+		<property name="listMusic">
+			<list>
+				<ref bean="ClassicalMusicBean"/>
+				<ref bean="RockMusicBean"/>
+				<ref bean="JazzMusicBean"/>
+			</list>
+		</property>
+		<property name="name" value="${musicPlayer.name}"/>
+		<property name="volume" value="${musicPlayer.volume}"/>
+	</bean>
+
+</beans>
+
